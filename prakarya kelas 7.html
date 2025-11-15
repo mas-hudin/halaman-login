@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login Ujian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .login-container {
+            background: dark;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: blue;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Masukkan Password Ujian</h2>
+        <form id="loginForm">
+            <input type="password" name="password" placeholder="Password" required />
+            <br />
+            <button type="submit">Masuk</button>
+        </form>
+    </div>
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah reload halaman
+
+        const inputPassword = this.password.value;
+        const correctPassword = '123456789'; // Ganti dengan password yang Anda inginkan
+        const gformURL = 'https://docs.google.com/forms/d/11-tE85v3ulM9DjaayuBpUMjJXqyS9qJYTLrmNYP6aSQ/preview'; // Ganti dengan URL Google Form sebenarnya
+
+        if(inputPassword === correctPassword) {
+            // Password benar, redirect ke Google Form
+            window.location.href = gformURL;
+        } else {
+            alert('Password salah, silakan coba lagi.');
+            this.password.value = ''; // Kosongkan input password jika salah
+            this.password.focus();
+        }
+    });
+    </script>
+</body>
+</html>
