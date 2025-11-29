@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login Ujian</title>
+
+    <style>
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        }
+
+        .login-container {
+            background: #adff2f;
+            padding: 30px 35px;
+            border-radius: 14px;
+            width: 330px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .school-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 0 auto 15px auto;
+        }
+
+        h2 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #1b3a57;
+            line-height: 1.4em;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 2px solid #d9d9d9;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input[type="password"]:focus {
+            border-color: #1e73be;
+        }
+
+        button {
+            background-color: #1e73be;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background-color: #00bfff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+
+        <!-- LOGO SUDAH TERSIMPAN DI DALAM KODE -->
+        <img 
+            class="school-logo"
+            src="data:image/jpeg;base64,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"
+            alt="Logo Sekolah"
+        />
+
+        <h2>
+            Asesmen Sumatif Akhir Semester 1 Tahun 2025<br>
+            SMPN 1 MIRIT
+        </h2>
+
+        <!-- FORM LOGIN -->
+        <form id="loginForm">
+            <input type="password" name="password" placeholder="Password Asas" required />
+            <button type="submit">Masuk</button>
+        </form>
+    </div>
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const correctPassword = "PHUR";
+        const inputPassword = this.password.value;
+        const gformURL = "https://forms.gle/ddeP2oV1oppPo6AR8";
+
+        if (inputPassword === correctPassword) {
+            window.location.href = gformURL;
+        } else {
+            alert("❗ Password salah!yang Bener Donk,Kamu salah nunyuk mungkin");
+            this.password.value = "";
+            this.password.focus();
+        }
+    });
+    </script>
+
+</body>
+</html>
