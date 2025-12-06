@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- RESET & BASIC STYLE --- */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* Mencegah highlight biru saat tap di Android */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -19,11 +19,11 @@
             font-family: "Poppins", sans-serif;
             height: 100vh;
             overflow: hidden; 
-            /* Background Gradient Modern */
             background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a1a);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             position: relative;
+            color: white;
         }
 
         @keyframes gradientBG {
@@ -61,22 +61,20 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 40px 30px;
             border-radius: 20px;
-            width: 90%; /* Responsive untuk HP */
+            width: 90%;
             max-width: 350px;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            color: white;
             transition: all 0.5s ease;
         }
 
-        /* --- PERBAIKAN LOGO --- */
         .logo-wrapper {
             width: 100px;
             height: 100px;
             margin: 0 auto 20px auto;
-            background: white; /* Latar putih agar logo JPG terlihat bersih */
-            border-radius: 50%; /* Membuat jadi bulat */
-            padding: 10px; /* Jarak antara logo dan pinggiran bulat */
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -128,7 +126,7 @@
         
         .footer-text { margin-top: 20px; font-size: 12px; opacity: 0.6; }
 
-        /* --- Container Ujian (IFRAME) - DIPERBAIKI --- */
+        /* --- Container Ujian (IFRAME) --- */
         .exam-container {
             display: none; 
             position: fixed;
@@ -138,7 +136,7 @@
             height: 100%;
             z-index: 20;
             background: white;
-            overflow: hidden; /* Mencegah scroll ganda */
+            overflow: hidden;
         }
 
         iframe {
@@ -146,9 +144,136 @@
             height: 100%;
             border: none;
             display: block;
-            /* Trik agar scroll lancar di iPhone/Android */
             overflow-y: auto;
             -webkit-overflow-scrolling: touch; 
+        }
+
+        /* --- TOMBOL SELESAI (SOLID & TENGAH ATAS) --- */
+        .finish-float-btn {
+            display: none;
+            position: fixed;
+            top: 0;                 /* Nempel di paling atas */
+            left: 50%;              /* Posisi tengah horizontal */
+            transform: translateX(-50%); /* Center Alignment */
+            z-index: 30;
+            
+            background: linear-gradient(to bottom, #11998e, #38ef7d);
+            
+            /* --- SOLID / TIDAK TRANSPARAN --- */
+            opacity: 1; 
+            
+            /* Styling Bentuk: Pil Kecil */
+            padding: 10px 30px;      
+            font-size: 14px;        
+            font-weight: bold;
+            color: white;
+            border: none;
+            
+            /* Membuat sudut bawah melengkung */
+            border-radius: 0 0 20px 20px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            width: auto; 
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .finish-float-btn:active {
+            transform: translateX(-50%) translateY(2px); /* Efek tekan */
+        }
+
+        /* --- CUSTOM MODAL KONFIRMASI (PENGGANTI ALERT) --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Background gelap */
+            z-index: 9999; /* Paling atas */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: white;
+            color: #333;
+            width: 100%;
+            max-width: 350px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-box h3 { margin-bottom: 10px; color: #1e73be; font-size: 20px; }
+        .modal-box p { font-size: 14px; margin-bottom: 25px; line-height: 1.5; color: #555; }
+
+        .modal-buttons { display: flex; gap: 10px; justify-content: center; }
+        
+        .btn-modal {
+            flex: 1;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-cancel { background: #e0e0e0; color: #333; }
+        .btn-confirm { background: #28a745; color: white; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- Halaman Terima Kasih --- */
+        .thank-you-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            background: rgba(15, 32, 39, 0.95); 
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .thank-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .thank-icon { font-size: 60px; margin-bottom: 20px; display: block; }
+        .thank-title { font-size: 28px; font-weight: 700; margin-bottom: 15px; color: #4facfe; }
+        .thank-msg { font-size: 16px; line-height: 1.6; color: #e0e0e0; margin-bottom: 30px; }
+        
+        .btn-close {
+            background: #ff5e62;
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            width: auto;
+            padding: 12px 40px;
         }
 
         /* --- Layar Peringatan (BLOCKER) --- */
@@ -182,10 +307,10 @@
             cursor: pointer;
             transition: transform 0.2s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: auto;
         }
         .btn-resume:hover { transform: scale(1.05); }
 
-        /* Animasi Shake untuk Password Salah */
         .shake { animation: shake 0.5s; }
         @keyframes shake {
             0%, 100% { transform: translate(-50%, -50%); }
@@ -201,7 +326,7 @@
 
     <div class="login-container" id="loginBox">
         <div class="logo-wrapper">
-            <img class="school-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAAqADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD93KOtJJIsMTO7KiICzMxwFA6k18m/t6ft+al8C4bfw/4OSyPijVbWW9+0X1u81noWnIyxy6ldqgLCMO6oicbnYZIAavFzDPsNhMbhctd5V8TJxpwja7UVzTm7tKNOnFOVSbaUVprJxi5qyVOlKtP4Y2+bbsku7b0S/Q+jPFnxX0rwpbyPJPARGdrSSyrFAh9C54P4Zqp4O+Mmm+I7UM1zaXCg4NzZyCWH8dpJX9RX4leLf2jfA+m31hqnxG0vxB8S/Hen+II73U7XXZ4r23k0xIAJdPmG9ra2mafcw+yRMIkVUZnYsBh+H/2i/BPiDxLpOo+B9DuPhfqtvpKW1u+n3n9mTahfCV2+0yXcIESblZYzDLamI+X95STlVfCXxHrVY5vSzSMLRclh1hFKi43Wrk8RHFSS0/eqlHe6o68r+f8A9ccDG8HCNlJQcvaS0k02ouSpukptJ+5zvZ+9pc/oCjkWaNXRldHGVZTkMPUGlr4w/YO/bm8R+IvEk/w6+IISfxFpcMk+namlj9ji8S2kcmyWWNPurcwuQk0aMyZ5U4zj7LtbqO+tkmhdZIpRuVl6EVllmf08Rja2U4hezxdBRc4XunGavGpTlpz0p68s7J3TjOMJqUF9BSnGrSVaHwu613TW6a6NfNdU2mm5KKKK+gKMbx9Zi68LzsSR5BWXg8EA8gjuME/kK/GX9tD4j+K7v9rT4j6j4X1C60rxXd+KdL8CaTewXP2aWztmtCzQrJkFUmkb5+ikFs5yor9sLq2S9tpIZV3RyqUYeoIwa/If/gqP8Ebv4TftO6xqtnPHY6b44ubLWdD1O6Iihtdf04BGtpXyAguIFJBJAZh0yvH5xWyyll/HlHiS8OerhvYQU+s6eIpYnWP2oqnCpOdtXClKOvMk/L4gU6uXKkrpKTba3XNCUFZ9G21GPaUk9LXXzx4X/wCCWSftj/GX4z/CHwb4qWxu/AelyNaXmpI6jUbm3kignJeM7ocXBd0wHAAVTkZNYWr/APBMpv2G/h98AoPiH4sXWB8WG+3au2nCRpbK3ke0LzebKSXlIuiSoUKvl4BbOaz/APgpn+178VfDHi+DWLP9n7Svhv45msE1TUvEZ1S703UJV8oOHXDxZYx7Sch26KxyCtc7/wAEwf2wPif8Tvibol9qvwG0f4ta5cwR3fh7UZtXur2+sygxENjSSKirhduY1CFFwVPJ/onBZ7xqsjpYvE4GtLMI4X2Tgp0OeUvZKEqscYpewUHVtV9pdOLduW94n5lPAZV7CeDhUiqLrc+8rJ8zaTw799zVO8FG2q17M+hvhP4g8XfCv9pfwtp3iTW7vXtf+FXxF07wba38lwZmOmXEclqbWMliUgMaK6x9ELMCAx+b9q/htZi30F5fmBuJmbBPAA+Xge5BNfkP+xH8NdY/aM/a00y91aJDPp/iE+PvGksGXTTrnaU0/TMsSfNQ5doycrsIb5l4/ZLT9Pj0qyitos+XCu0E9T6k+5PNfzfHLpZpx1Tz3GypyxOGwns6vI1pUrSjN2itFCU4V61Po6eIhKOkj9M4eh7HBVKdO/s5T92+9o3Wre7UXCD6qUGnqiaiiiv049UK8q/aY+A2gfGrwrdaP4h0ldY0bWQFuINrb4pU5SVGX5kcYBDqQVKgg816rQDivj+OeDaHE2VvLqtWVGcZQqU6tN2qUqkHeNSEt1Jaq66Nm1CqqcnzRUk0009U09012PzY+KX/AATZ8dTeJby40LxVY+J49Ru/tdwuvtJZ6heSfKCbl1imgu3ZY4laR7ZZGWNQWPJNHwD/AMEy/iBFr8P9ta9ofhO3trmK7jg0xm1CewmieN42toRBbWsMkcke6OQxTFCxxkbcfptuOepo3H1NedT4f42jlrwH9vXndWqPCUHPltqmv4bnt+8cL6XabdzkeDwXtOfklbtzy/8ASvjS8ua3yPGf2aP2d9D+DenHTtHsrqG3Wd9Svru9Z5bzV72Viz3NxM/zSyu2WZj6ADAwB7LSkk9STSV1cB8D0eGMDUwyrzxFarUlVq1qjvUqzk/im+rStFeSvu2ddaqp2UIqMYpJJaJJdgooor7cxP/Z" alt="Logo Sekolah" />
+            <img class="school-logo" src="data:image/jpeg;base64,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" alt="Logo Sekolah" />
         </div>
 
         <h2>
@@ -211,16 +336,48 @@
         
         <form id="loginForm">
             <div class="input-group">
-                <input type="password" name="password" placeholder="Masukkan Password" required autocomplete="off" />
+                <input type="password" name="password" placeholder="Masukkan Token Ujian" required autocomplete="off" />
             </div>
             <button type="submit" id="btnSubmit">MULAI UJIAN</button>
         </form>
         
-        <div class="footer-text">© 2025 Panitia ASAS SMPN 1 MIRIT - CBT System</div>
+        <div class="footer-text">© 2025 Panitia ASAS - CBT System</div>
     </div>
 
     <div id="examContainer" class="exam-container">
         <iframe id="examFrame" src=""></iframe>
+        
+        <button id="finishBtn" class="finish-float-btn" onclick="openConfirmModal()">
+            ✅ SELESAI UJIAN
+        </button>
+    </div>
+
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Konfirmasi Selesai</h3>
+            <p>
+                Apakah Anda sudah menekan tombol <b>KIRIM</b> di dalam formulir soal?
+                <br><br>
+                Jika belum, tekan BATAL dan kirim dulu.
+            </p>
+            <div class="modal-buttons">
+                <button class="btn-modal btn-cancel" onclick="closeConfirmModal()">BATAL</button>
+                <button class="btn-modal btn-confirm" onclick="finishExam()">YA, SELESAI</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="thankYouPage" class="thank-you-overlay">
+        <div class="thank-card">
+            <span class="thank-icon">🎓</span>
+            <h1 class="thank-title">TERIMA KASIH!</h1>
+            <p class="thank-msg">
+                Terima kasih dari panitia karena sudah mengikuti ASAS di SMPN 1 MIRIT dengan baik dan tertib.
+                <br><br>
+                <em>"tertanda team panitia asas 1 pak eka nanda dan teman teman."</em>
+            </p>
+            <button class="btn-close" onclick="closeApp()">KEMBALI KE HALAMAN UTAMA</button>
+        </div>
     </div>
 
     <div id="warningOverlay" class="warning-overlay">
@@ -241,23 +398,27 @@
         // --- KONFIGURASI ---
         const CORRECT_PASSWORD = "ZXUA"; // Ganti Password Disini
         
-        // PASTE LINK GOOGLE FORM (TIPE PANJANG) DISINI
+        // Link Google Form yang dipakai
         const GFORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe4j9HTgRsxFv0FFMtcU93A7fD9HRRUE_x-IwxV1QINe0dY6A/viewform?usp=header"; 
         
-        let snowInterval; // Variabel untuk menyimpan timer salju
+        let snowInterval; 
         let violationCount = 0;
+        let isExamFinished = false; // Flag untuk status ujian selesai
         
         const loginBox = document.getElementById('loginBox');
         const examContainer = document.getElementById('examContainer');
         const examFrame = document.getElementById('examFrame');
         const warningOverlay = document.getElementById('warningOverlay');
         const btnSubmit = document.getElementById('btnSubmit');
+        const finishBtn = document.getElementById('finishBtn');
+        const thankYouPage = document.getElementById('thankYouPage');
+        const confirmModal = document.getElementById('confirmModal');
 
         // --- LOGIC EFEK SALJU ---
         function createSnowflake() {
             const snow = document.createElement('div');
             snow.classList.add('snowflake');
-            const size = Math.random() * 5 + 3 + 'px'; // Ukuran sedikit diperkecil agar elegan
+            const size = Math.random() * 5 + 3 + 'px';
             snow.style.width = size;
             snow.style.height = size;
             snow.style.left = Math.random() * 100 + 'vw';
@@ -265,12 +426,22 @@
             snow.style.opacity = Math.random() * 0.7;
             document.body.appendChild(snow);
             
-            // Hapus elemen setelah animasi selesai (memory management)
             setTimeout(() => { snow.remove(); }, 8000);
         }
 
-        // Jalankan Salju
-        snowInterval = setInterval(createSnowflake, 150); 
+        function startSnow() {
+            if(!snowInterval) {
+                snowInterval = setInterval(createSnowflake, 150); 
+            }
+        }
+        
+        function stopSnow() {
+            clearInterval(snowInterval);
+            snowInterval = null;
+            document.querySelectorAll('.snowflake').forEach(el => el.remove());
+        }
+
+        startSnow();
 
         // --- LOGIC LOGIN ---
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -278,16 +449,14 @@
             const inputPassword = this.password.value;
 
             if (inputPassword === CORRECT_PASSWORD) {
-                // Efek Loading
                 btnSubmit.innerHTML = "Menyiapkan Soal...";
-                btnSubmit.style.background = "#28a745"; // Hijau
+                btnSubmit.style.background = "#28a745"; 
                 
                 setTimeout(() => {
                     startExam();
                 }, 1000);
                 
             } else {
-                // Efek Gagal
                 loginBox.classList.add('shake');
                 setTimeout(() => { loginBox.classList.remove('shake'); }, 500);
                 alert("❗ Token salah! Coba lagi.");
@@ -296,40 +465,66 @@
             }
         });
 
-        // --- FUNGSI MEMULAI UJIAN (PENUH PERBAIKAN) ---
+        // --- FUNGSI MEMULAI UJIAN ---
         function startExam() {
-            // 1. STOP ANIMASI SALJU (PENTING AGAR TIDAK GOYANG)
-            clearInterval(snowInterval);
-            // Hapus sisa salju di layar
-            document.querySelectorAll('.snowflake').forEach(el => el.remove());
-
-            // 2. Transisi UI
+            stopSnow(); 
             loginBox.classList.add('hidden');
             examContainer.style.display = 'block';
+            finishBtn.style.display = 'block'; 
             
-            // 3. Muat Google Form
             examFrame.src = GFORM_URL;
 
-            // 4. Minta Fullscreen
             requestFullScreen(document.documentElement);
-
-            // 5. Aktifkan Anti-Cheat
             enableAntiCheat();
+        }
+
+        // --- LOGIC KONFIRMASI (MODAL) ---
+        function openConfirmModal() {
+            confirmModal.style.display = 'flex'; // Munculkan popup
+        }
+
+        function closeConfirmModal() {
+            confirmModal.style.display = 'none'; // Sembunyikan popup
+        }
+
+        // --- FUNGSI SELESAI UJIAN (FINAL) ---
+        function finishExam() {
+            // Tutup Modal
+            closeConfirmModal();
+
+            isExamFinished = true; // Set status selesai agar anti-cheat mati
+            
+            // Sembunyikan Ujian
+            examContainer.style.display = 'none';
+            finishBtn.style.display = 'none';
+            
+            // Munculkan Halaman Terima Kasih
+            thankYouPage.style.display = 'flex';
+            
+            // Nyalakan Salju Lagi
+            startSnow();
+
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+
+        // --- FUNGSI RESET ---
+        function closeApp() {
+            location.reload();
         }
 
         // --- LOGIC ANTI CONTEK ---
         function enableAntiCheat() {
-            // Deteksi Pindah Tab / Minimize
             document.addEventListener("visibilitychange", function() {
-                if (document.hidden) {
+                if (document.hidden && !isExamFinished) {
                     triggerViolation("Pindah Tab/Minimize");
                 }
             });
 
-            // Deteksi Kehilangan Fokus (Klik aplikasi lain/Floating Apps)
             window.addEventListener("blur", function() {
                 setTimeout(() => {
-                    if (document.activeElement !== examFrame) { 
+                    if (document.activeElement !== examFrame && !isExamFinished) { 
                        triggerViolation("Aplikasi Lain");
                     }
                 }, 500);
@@ -337,6 +532,10 @@
         }
 
         function triggerViolation(reason) {
+            if (isExamFinished) return;
+            // Jika modal sedang terbuka, jangan trigger pelanggaran dulu
+            if (confirmModal.style.display === 'flex') return;
+
             violationCount++;
             console.log("Pelanggaran ke-" + violationCount + ": " + reason);
             warningOverlay.style.display = 'flex';
@@ -347,7 +546,6 @@
             requestFullScreen(document.documentElement);
         }
 
-        // Helper Fullscreen Aman
         function requestFullScreen(element) {
             try {
                 var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
