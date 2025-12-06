@@ -147,39 +147,41 @@
             -webkit-overflow-scrolling: touch; 
         }
 
-        /* --- Tombol Selesai Floating (POSISI KANAN TENGAH & TRANSPARAN) --- */
+        /* --- Tombol Selesai Floating (VERSI TENGAH ATAS - MINIMALIS) --- */
         .finish-float-btn {
             display: none;
             position: fixed;
-            top: 50%;            /* Posisi Vertikal di Tengah */
-            right: 0;            /* Menempel di sisi Kanan */
-            transform: translateY(-50%); /* Koreksi agar pas di tengah vertikal */
+            top: 0;                 /* Nempel di paling atas */
+            left: 50%;              /* Posisi tengah horizontal */
+            transform: translateX(-50%); /* Center Alignment */
             z-index: 30;
-            background: linear-gradient(45deg, #11998e, #38ef7d);
             
-            /* -- FITUR PENTING: TRANSPARANSI -- */
-            opacity: 0.3;        /* Tombol terlihat samar (30%) agar soal di bawahnya terbaca */
+            background: linear-gradient(to bottom, #11998e, #38ef7d);
             
-            /* Styling Bentuk */
-            padding: 15px 15px 15px 20px; 
-            font-size: 14px;     /* Ukuran font disesuaikan agar tidak memenuhi layar HP */
+            /* TRANSPARANSI AGAR TIDAK MENGGANGGU */
+            opacity: 0.3;           /* Default: Samar-samar */
+            
+            /* Styling Bentuk: Pil Kecil */
+            padding: 8px 25px;      /* Padding kecil saja */
+            font-size: 12px;        /* Font kecil tapi jelas */
             font-weight: bold;
             color: white;
             border: none;
             
-            /* Membuat sisi kiri melengkung, sisi kanan rata */
-            border-radius: 50px 0 0 50px; 
-            box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+            /* Membuat sudut bawah melengkung */
+            border-radius: 0 0 20px 20px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             width: auto; 
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 1px;
         }
 
-        /* Saat disentuh/hover, tombol menjadi JELAS */
+        /* Saat disentuh/hover, tombol turun sedikit dan JELAS */
         .finish-float-btn:hover, .finish-float-btn:active {
-            opacity: 1;          /* Menjadi jelas 100% */
-            padding-right: 25px; /* Efek geser sedikit biar interaktif */
-            box-shadow: -5px 5px 15px rgba(0,0,0,0.3);
+            opacity: 1;             /* Jelas 100% */
+            padding: 12px 35px;     /* Membesar sedikit */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         /* --- Halaman Terima Kasih --- */
